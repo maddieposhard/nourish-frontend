@@ -1,0 +1,13 @@
+<nav class="navbar">
+    <div class="hamburger" (click)="toggleMenu()">
+      &#9776; <!-- simple hamburger icon -->
+    </div>
+  
+    <ul [class.open]="menuOpen">
+        <a routerLink="/home" (click)="closeMenu()">Home</a>
+        <a routerLink="/baby" (click)="closeMenu()">Baby</a>
+        <a routerLink="/feeds" (click)="closeMenu()">Feeds</a>
+        <a routerLink="/pumps" (click)="closeMenu()">Pumps</a>
+        <a routerLink="/profile" (click)="closeMenu()">Profile</a>
+    </ul>
+  </nav>
