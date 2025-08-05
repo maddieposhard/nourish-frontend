@@ -1,1 +1,13 @@
-<p>baby works!</p>
+
+<div class="baby-container">
+    @for (baby of babies; track baby.id) {
+    <div
+      class="user-preview-container"
+    >
+      <div class="user-preview-content">
+        <h2>{{ baby.id }}</h2>
+        <p>{{ baby.name }}</p>
+      </div>
+    </div>
+    }
+  </div>
