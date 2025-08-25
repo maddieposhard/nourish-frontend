@@ -1,0 +1,33 @@
+<mat-form-field appearance="fill">
+    <mat-label>Select a date</mat-label>
+    <input 
+      matInput 
+      [matDatepicker]="picker" 
+      [value]="selectedDate" 
+      (dateChange)="onDateSelected($event.value)" />
+  
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  
+  <h3>Pumps on {{ selectedDate | date: 'fullDate' }}</h3>
+  
+  @if (pumps.length > 0) {
+    <ul>
+      @for (pump of pumps; track pump.id) {
+        <li>
+          <strong>{{ pump.time }}</strong> — {{ pump.ounces }} oz ({{ pump.length }} min)
+          <br />
+          @if (pump.notes) {
+            <em>{{ pump.notes }}</em>
+          }
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>No pumps recorded for this day.</p>
+  }
+
+
+  
+  

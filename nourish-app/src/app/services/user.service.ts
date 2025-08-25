@@ -13,4 +13,13 @@ export class UserService {
 	getUsers(): Observable<User[]> {
 		return this.http.get<User[]>(`${environment.apiUrl}/users`);
 	}
+
+  getCurrentUser() {
+		return this.http.get<User>('http://localhost:3000/profile');
+	}
+	
+	updateCurrentUser(data: Partial<User>) {
+		return this.http.put<User>('http://localhost:3000/profile', data);
+	}
+
 }

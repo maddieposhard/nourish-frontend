@@ -13,4 +13,21 @@ export class BabyService {
 	getBabies(): Observable<Baby[]> {
 		return this.http.get<Baby[]>(`${environment.apiUrl}/babies`);
 	}
+
+  getMyBabies(): Observable<Baby[]> {
+    return this.http.get<Baby[]>(`${environment.apiUrl}/my_babies`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
+
+  createBaby(baby: Baby) {
+    const token = localStorage.getItem('token');
+    return this.http.post<Baby>(`${environment.apiUrl}/babies`, baby, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+  }
 }

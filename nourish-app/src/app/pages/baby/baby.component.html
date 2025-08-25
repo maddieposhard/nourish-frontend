@@ -11,3 +11,29 @@
     </div>
     }
   </div>
+
+<button (click)="toggleModal()">Add Baby</button>
+
+@if (showModal) {
+    <div>
+      <div class="modal-backdrop" (click)="toggleModal()"></div>
+
+      <div class="modal">
+        <h2>Add a Baby</h2>
+        <form (ngSubmit)="addBaby()">
+          <label>
+            Name:
+            <input name="name" [(ngModel)]="newBaby.name" placeholder="Baby's name" />
+          </label>
+
+          <button type="submit">Add</button>
+          <button type="button" (click)="toggleModal()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  } @else {
+  }
+
+
+
+

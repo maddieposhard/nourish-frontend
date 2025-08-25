@@ -1,15 +1,18 @@
 <nav class="navbar">
-    <div class="hamburger" (click)="toggleMenu()">
-      &#9776; <!-- simple hamburger icon -->
-    </div>
-  
-    <ul [class.open]="menuOpen">
-        <li><a routerLink="/home" (click)="closeMenu()">Home</a></li>
-        <li><a routerLink="/baby" (click)="closeMenu()">Baby</a></li>
-        <li><a routerLink="/feeds" (click)="closeMenu()">Feeds</a></li>
-        <li><a routerLink="/pumps" (click)="closeMenu()">Pumps</a></li>
-        <li><a routerLink="/profile" (click)="closeMenu()">Profile</a></li>
-        <button (click)="logout()">Logout</button>
-
-    </ul>
-  </nav>
+    @if (authService.isLoggedIn()){
+        <div class="hamburger" (click)="toggleMenu()">
+        &#9776; <!-- simple hamburger icon -->
+        </div>
+    
+        <ul [class.open]="menuOpen">
+            <li><a routerLink="/home" (click)="closeMenu()">Home</a></li>
+            <li><a routerLink="/baby" (click)="closeMenu()">Baby</a></li>
+            <li><a routerLink="/feeds" (click)="closeMenu()">Feeds</a></li>
+            <li><a routerLink="/pumps" (click)="closeMenu()">Pumps</a></li>
+            <li><a routerLink="/profile" (click)="closeMenu()">Profile</a></li>
+            <button (click)="logout()">Logout</button>
+        </ul>
+    }@else {
+    <a routerLink="/signup">Sign Up</a>
+    }
+</nav>
