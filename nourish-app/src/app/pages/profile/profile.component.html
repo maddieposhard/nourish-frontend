@@ -1,9 +1,6 @@
-<div @if(user) else loading>
+<div>
   <h2>Profile</h2>
   <p><strong>Name:</strong> {{ user()?.name }}</p>
 </div>
 
-<ng-template #loading>
-  <p>Loading profile...</p>
-</ng-template>
     

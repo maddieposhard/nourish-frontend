@@ -4,6 +4,7 @@ import { PumpsService } from '../../services/pumps.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPumpComponent } from '../new-pump/new-pump.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-pumps',
@@ -13,7 +14,7 @@ import { NewPumpComponent } from '../new-pump/new-pump.component';
 })
 export class PumpsComponent {
   selectedDate: Date = new Date();
-  pumps: Pump[] = [];
+  pumps = new BehaviorSubject<Pump[]>([]);
   
   constructor(private pumpsService: PumpsService, private dialog: MatDialog) {}
   
@@ -24,8 +25,7 @@ export class PumpsComponent {
   loadPumps() {
     const dateStr = this.selectedDate.toISOString().split('T')[0]; // YYYY-MM-DD
     this.pumpsService.getPumpsByDate(dateStr).subscribe({
-      next: pumps => this.pumps = pumps,
-      error: err => console.error('Error loading pumps:', err)
+      next: pumps => this.pumps.next(pumps)
     });
   }
 
@@ -44,6 +44,7 @@ export class PumpsComponent {
           date: new Date(result.date).toISOString().split('T')[0] // format for backend
         };
 
+        // Call the service to save the new pump
         this.pumpsService.createPump(pumpData).subscribe({
           next: () => this.loadPumps(),
           error: err => console.error('Error adding pump:', err)

@@ -1,39 +1,54 @@
-
 <div class="baby-container">
     @for (baby of babies; track baby.id) {
-    <div
-      class="user-preview-container"
-    >
-      <div class="user-preview-content">
-        <h2>{{ baby.id }}</h2>
-        <p>{{ baby.name }}</p>
+      <div class="user-preview-container">
+        <div class="user-preview-content">
+          <p>{{ baby.name }}</p>
+          <p>{{ baby.gender }}</p>
+        </div>
       </div>
-    </div>
     }
   </div>
-
-<button (click)="toggleModal()">Add Baby</button>
-
-@if (showModal) {
+  
+  <button mat-raised-button color="primary" (click)="toggleModal()">Add Baby</button>
+  
+  @if (showModal) {
     <div>
       <div class="modal-backdrop" (click)="toggleModal()"></div>
-
+  
       <div class="modal">
         <h2>Add a Baby</h2>
-        <form (ngSubmit)="addBaby()">
-          <label>
-            Name:
-            <input name="name" [(ngModel)]="newBaby.name" placeholder="Baby's name" />
-          </label>
-
-          <button type="submit">Add</button>
-          <button type="button" (click)="toggleModal()">Cancel</button>
+        <form (ngSubmit)="addBaby()" #babyForm="ngForm">
+  
+          <!-- Baby Name -->
+          <mat-form-field appearance="fill">
+            <mat-label>Baby's Name</mat-label>
+            <input matInput name="name" [(ngModel)]="newBaby.name" required />
+          </mat-form-field>
+  
+          <!-- Birthdate -->
+          <mat-form-field appearance="fill">
+            <mat-label>Birthday</mat-label>
+            <input matInput [matDatepicker]="picker" name="birthDate" [(ngModel)]="newBaby.birthDate" required />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+          <!-- Gender -->
+          <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <mat-select name="gender" [(ngModel)]="newBaby.gender" required>
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <div class="actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="babyForm.invalid">Add</button>
+            <button mat-button type="button" (click)="toggleModal()">Cancel</button>
+          </div>
+  
         </form>
       </div>
     </div>
-  } @else {
   }
-
-
-
-
+  

@@ -13,17 +13,20 @@
   <h3>Pumps on {{ selectedDate | date: 'fullDate' }}</h3>
   
   @if (pumps.length > 0) {
-    <ul>
-      @for (pump of pumps; track pump.id) {
-        <li>
-          <strong>{{ pump.time }}</strong> — {{ pump.ounces }} oz ({{ pump.length }} min)
-          <br />
-          @if (pump.notes) {
-            <em>{{ pump.notes }}</em>
-          }
-        </li>
-      }
-    </ul>
+    <ul class="pump-list">
+        @for (pump of pumps; track pump.id) {
+          <li class="pump-item">
+            <div class="pump-time">{{ formatTime(pump.time) }}</div>
+            <div class="pump-details">
+              <span class="pump-ounces">{{ pump.ounces }} oz</span>
+              <span class="pump-length">({{ pump.length }} min)</span>
+              @if (pump.notes) {
+                <div class="pump-notes">{{ pump.notes }}</div>
+              }
+            </div>
+          </li>
+        }
+      </ul>
   } @else {
     <p>No pumps recorded for this day.</p>
   }

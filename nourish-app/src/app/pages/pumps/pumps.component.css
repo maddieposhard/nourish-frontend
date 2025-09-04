@@ -1,0 +1,24 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: #fdfdfd;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  button[mat-raised-button] {
+    border-radius: 24px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    background-color: #81c784; /* pastel green */
+    color: white;
+    transition: background 0.2s ease;
+  }
+  
+  button[mat-raised-button]:hover {
+    background-color: #66bb6a;
+  }
+  

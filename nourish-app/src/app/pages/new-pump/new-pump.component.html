@@ -1,37 +1,35 @@
 <h2 mat-dialog-title>Add Pump</h2>
 <mat-dialog-content>
-  <form [formGroup]="pumpForm">
     <mat-form-field appearance="fill">
-      <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="pumpForm.date" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Time</mat-label>
-      <input matInput type="time" formControlName="time">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Time</mat-label>
+    <input matInput type="time" [(ngModel)]="pumpForm.time" name="time" required>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Length (minutes)</mat-label>
-      <input matInput type="number" formControlName="length">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Length (minutes)</mat-label>
+    <input matInput type="number" [(ngModel)]="pumpForm.length" name="length" required>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Ounces</mat-label>
-      <input matInput type="number" formControlName="ounces">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Ounces</mat-label>
+    <input matInput type="number" [(ngModel)]="pumpForm.ounces" name="ounces" required>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Notes</mat-label>
-      <textarea matInput formControlName="notes"></textarea>
-    </mat-form-field>
-  </form>
+  <mat-form-field appearance="fill">
+    <mat-label>Notes</mat-label>
+    <textarea matInput [(ngModel)]="pumpForm.notes" name="notes"></textarea>
+  </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="cancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="save()">Save</button>
+  <button mat-raised-button color="primary" (click)="save()" 
+    [disabled]="!pumpForm.date || !pumpForm.time || !pumpForm.length || !pumpForm.ounces">Save</button>
 </mat-dialog-actions>
-

@@ -1,13 +1,104 @@
-ul {
-    display: none;
-}
-
-ul.open {
-    display: block;
-}
-
-.hamburger {
+/* Navbar container */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #81c784; /* pastel green */
+    padding: 0.75rem 1.5rem;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* Nav links + logout wrapper */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+  }
+  
+  /* List of links */
+  .nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Links */
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+  
+  .nav-links a:hover {
+    background-color: #66bb6a;
+  }
+  
+  /* Logout button on far right */
+  .logout-btn {
+    margin-left: auto; /* pushes it to the far right */
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
     cursor: pointer;
-    font-size: 24px;
-    user-select: none;
-}
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #66bb6a;
+  }
+  
+  /* Hamburger menu */
+  .hamburger {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    display: none; /* hidden on desktop */
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+  
+    .nav-links {
+      position: absolute;
+      top: 3.5rem;
+      right: 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+      background: #f6fcf6;
+      border: 1px solid #d9f2d9;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      padding: 1rem;
+      gap: 0.75rem;
+      display: none;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  
+    .nav-links ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .nav-links a,
+    .logout-btn {
+      color: #4c8c4a;
+    }
+  }
+  
