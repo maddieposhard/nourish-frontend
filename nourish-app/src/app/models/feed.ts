@@ -1,9 +1,12 @@
 import { Baby } from "./baby";
 
 export interface Feed {
-    baby: Baby
-    date: Date;
-    time: number;
-    length: number;
-    notes: string;
+  id?: number;          // optional, from backend
+  baby: Baby;
+  date: Date;
+  time: string;         // HH:mm string
+  type: 'breast' | 'bottle';
+  length?: number;      // optional, for breastfeeds
+  ounces?: number;      // optional, for bottle feeds
+  notes?: string;
 }
