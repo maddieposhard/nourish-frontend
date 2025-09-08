@@ -2,34 +2,34 @@
 <mat-dialog-content>
     <mat-form-field appearance="fill">
         <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="pumpForm.date" required />
+        <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="pumpForm().date" required />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Time</mat-label>
-    <input matInput type="time" [(ngModel)]="pumpForm.time" name="time" required>
+    <input matInput type="time" [(ngModel)]="pumpForm().time" name="time" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Length (minutes)</mat-label>
-    <input matInput type="number" [(ngModel)]="pumpForm.length" name="length" required>
+    <input matInput type="number" [(ngModel)]="pumpForm().length" name="length" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Ounces</mat-label>
-    <input matInput type="number" [(ngModel)]="pumpForm.ounces" name="ounces" required>
+    <input matInput type="number" [(ngModel)]="pumpForm().ounces" name="ounces" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Notes</mat-label>
-    <textarea matInput [(ngModel)]="pumpForm.notes" name="notes"></textarea>
+    <textarea matInput [(ngModel)]="pumpForm().notes" name="notes"></textarea>
   </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="cancel()">Cancel</button>
   <button mat-raised-button color="primary" (click)="save()" 
-    [disabled]="!pumpForm.date || !pumpForm.time || !pumpForm.length || !pumpForm.ounces">Save</button>
+    [disabled]="!pumpForm().date || !pumpForm().time || !pumpForm().length || !pumpForm().ounces">Save</button>
 </mat-dialog-actions>

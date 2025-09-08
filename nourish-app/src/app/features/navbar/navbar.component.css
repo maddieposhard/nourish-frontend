@@ -1,4 +1,3 @@
-/* Navbar container */
 .navbar {
     display: flex;
     align-items: center;
@@ -10,7 +9,6 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
   
-  /* Nav links + logout wrapper */
   .nav-links {
     display: flex;
     align-items: center;
@@ -18,7 +16,6 @@
     flex: 1;
   }
   
-  /* List of links */
   .nav-links ul {
     list-style: none;
     display: flex;
@@ -26,8 +23,7 @@
     margin: 0;
     padding: 0;
   }
-  
-  /* Links */
+
   .nav-links a {
     text-decoration: none;
     color: white;
@@ -41,9 +37,8 @@
     background-color: #66bb6a;
   }
   
-  /* Logout button on far right */
   .logout-btn {
-    margin-left: auto; /* pushes it to the far right */
+    margin-left: auto; 
     background: none;
     border: none;
     color: white;
@@ -100,5 +95,20 @@
     .logout-btn {
       color: #4c8c4a;
     }
+  }
+
+  .navbar a[routerLink="/signup"] {
+    background-color: #a8e6cf;
+    color: #333;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .navbar a[routerLink="/signup"]:hover {
+    background-color: #91d5b3;
+    transform: translateY(-2px);
   }
   

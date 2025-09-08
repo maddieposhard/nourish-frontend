@@ -1,80 +1,97 @@
-/* Modal backdrop: dark transparent overlay */
-.modal-backdrop {
+/* Container for all babies */
+.baby-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  /* Individual baby card */
+  .user-preview-container {
+    background-color: #dff6e4; /* pastel green */
+    border-radius: 12px;
+    padding: 16px;
+    width: 180px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  
+  .user-preview-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Content inside the baby card */
+  .user-preview-content p {
+    margin: 4px 0;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Add Baby button styling */
+  button[mat-raised-button] {
+    margin-top: 16px;
+    background-color: #a8e6cf; /* slightly darker pastel green */
+    color: #333;
+    font-weight: 600;
+    transition: background-color 0.2s;
+  }
+  
+  button[mat-raised-button]:hover {
+    background-color: #91d5b3;
+  }
+  
+  /* Modal backdrop */
+  .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
-    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 50;
   }
   
-  /* Modal container: centered white box with shadow */
+  /* Modal window */
   .modal {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 320px;
-    max-width: 90vw;
-    padding: 1.5rem 2rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     transform: translate(-50%, -50%);
-    z-index: 1001;
-    font-family: Arial, sans-serif;
+    background-color: #f4fff7; /* soft pastel background */
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
   
-  /* Form labels & inputs spacing */
-  .modal label {
-    display: block;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .modal input,
-  .modal select {
+  /* Form fields inside modal */
+  .mat-form-field {
     width: 100%;
-    padding: 0.4rem 0.5rem;
-    margin-top: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1rem;
   }
   
-  /* Buttons styling */
-  .modal button {
-    margin-right: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 4px;
-    border: none;
-    transition: background-color 0.2s ease;
+  /* Modal action buttons */
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
   }
   
-  .modal button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .modal button[type="submit"]:disabled {
-    background-color: #a0c5f9;
-    cursor: not-allowed;
-  }
-  
-  .modal button[type="button"] {
-    background-color: #ccc;
+  .actions button[mat-button] {
     color: #333;
   }
   
-  .modal button[type="button"]:hover {
-    background-color: #bbb;
+  .actions button[mat-raised-button] {
+    background-color: #a8e6cf;
   }
   
-  .modal button[type="submit"]:hover:not(:disabled) {
-    background-color: #0056b3;
+  .actions button[mat-raised-button]:hover {
+    background-color: #91d5b3;
   }
   

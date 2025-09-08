@@ -1,6 +1,41 @@
-<app-calendar/>
-
-<button mat-raised-button color="primary" (click)="openAddPumpDialog()">
-    Add Pump
-</button>
+<div class="pumps-container">
+    <!-- Left column: calendar -->
+    <div class="calendar-wrapper">
+      <app-calendar></app-calendar>
+      <button class="add-pump-btn" mat-raised-button color="primary" (click)="openAddPumpDialog()">
+        Add Pump
+      </button>
+    </div>
+  
+    <!-- Right column: pumps -->
+    <div class="pumps-list-wrapper">
+  
+      <h3>Pumps on {{ selectedDate() | date:'fullDate' }}</h3>
+  
+      @if (pumps().length > 0) {
+        <ul class="pump-list">
+          @for (pump of pumps(); track pump.id) {
+            <li class="pump-item">
+              <div class="pump-time">{{ formatTime(pump.time) }}</div>
+              <div class="pump-details">
+                <span class="pump-ounces">{{ pump.ounces }} oz</span>
+                <span class="pump-length">({{ pump.length }} min)</span>
+              </div>
+              @if (pump.notes) {
+                <div class="pump-notes">{{ pump.notes }}</div>
+              }
+              <button class="delete-pump-btn" (click)="deletePump(pump.id)">
+              Delete
+              </button>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p>No pumps recorded for this day.</p>
+      }
+    </div>
+  </div>
+  
+  
+  
   

@@ -1,1 +1,30 @@
-<p>feeds works!</p>
+<!-- <app-calendar (dateChange)="onDateSelected($event)"></app-calendar> -->
+
+<button mat-raised-button color="primary" (click)="openAddFeedDialog()">
+  Add Feed
+</button>
+
+<h3>Feeds on {{ selectedDate | date:'fullDate' }}</h3>
+
+@if (feeds.length > 0) {
+  <ul class="feed-list">
+    @for (feed of feeds; track feed.id) {
+      <li class="feed-item">
+        <div class="feed-type">{{ feed.type | titlecase }} Feed</div>
+        <div class="feed-info">
+          {{ feed.time }} - 
+          @if (feed.length) {
+            {{ feed.length }} min
+          } @else if (feed.ounces) {
+            {{ feed.ounces }} oz
+          }
+        </div>
+        @if (feed.notes) {
+          <div class="feed-notes">{{ feed.notes }}</div>
+        }
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No feeds recorded for this day.</p>
+}

@@ -7,3 +7,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cdk-overlay-container {
     z-index: 10001; /* higher than your modal */
   }
+
+/* Calendar popup panel */
+.mat-datepicker-content {
+    background-color: #e6f4ea !important; /* pastel green */
+    border-radius: 12px !important;
+    color: #2e7d32 !important;
+  }
+  
+  /* Header of the calendar */
+  .mat-calendar-header {
+    background-color: #c8e6c9 !important;
+    color: #1b5e20 !important;
+  }
+  
+  /* Selected day */
+  .mat-calendar-body-selected {
+    background-color: #a8e6a3 !important;
+    color: #ffffff !important;
+  }
+  
+  /* Hover day */
+  .mat-calendar-body-cell:hover:not(.mat-calendar-body-disabled) {
+    background-color: #d0f0d0 !important;
+  }
+  
+  /* Today indicator */
+  .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+    border-color: #2e7d32 !important;
+  }
+  

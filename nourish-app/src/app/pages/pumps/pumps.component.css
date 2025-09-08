@@ -1,24 +1,135 @@
-:host {
+.pumps-container {
+    display: flex;
+    flex-direction: row; 
+    gap: 30px;
+    padding: 20px;
+    background-color: #f3fdf7; 
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+.calendar-wrapper {
+    flex: 0 0 300px; 
+    background-color: #e6f4ea; 
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.calendar-wrapper .mat-form-field {
+    width: 100%;
+    background-color: #e6f4ea; 
+    border-radius: 8px;
+}
+
+.pumps-list-wrapper {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    background: #fdfdfd;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  button[mat-raised-button] {
-    border-radius: 24px;
-    padding: 0.75rem 2rem;
-    font-weight: 600;
-    font-size: 1rem;
-    background-color: #81c784; /* pastel green */
-    color: white;
-    transition: background 0.2s ease;
-  }
-  
-  button[mat-raised-button]:hover {
-    background-color: #66bb6a;
-  }
-  
+    gap: 15px;
+}
+
+h3 {
+    color: #2e7d32; 
+    margin-bottom: 10px;
+}
+
+.pump-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.pump-item {
+    position: relative;  
+    background-color: #e6f4ea;
+    border-radius: 12px;
+    padding: 15px;
+    padding-bottom: 50px; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.pump-time {
+    font-weight: bold;
+    color: #1b5e20;
+}
+
+.pump-details {
+    display: flex;
+    justify-content: space-between;
+    color: #2e7d32;
+}
+
+.pump-notes {
+    font-style: italic;
+    color: #4caf50;
+}
+
+.pumps-list-wrapper p {
+    color: #2e7d32;
+}
+
+.add-pump-btn {
+    background-color: #e6f4ea;        
+    color: #2e7d32;                   
+    font-weight: bold;
+    border-radius: 12px;
+    border-color: #2e7d32;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-pump-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.add-pump-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.delete-pump-btn {
+    position: absolute;
+    bottom: 10px;       
+    right: 10px;       
+    background-color: #e6f4ea;        
+    color: #2e7d32;                   
+    font-weight: bold;
+    border-radius: 8px;  
+    border-color: #2e7d32;
+    padding: 6px 12px;  
+    font-size: 0.8rem;   
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.delete-pump-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.delete-pump-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+/* Responsive adjustments for mobile */
+@media (max-width: 800px) {
+.pumps-container {
+    flex-direction: column;
+}
+
+.calendar-wrapper {
+    width: 100%;
+}
+}
+
+
+
+

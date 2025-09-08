@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -6,7 +6,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Pump } from '../../models/pump';
+import { Pump } from '../../../models/pump';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -22,24 +22,29 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     CommonModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   templateUrl: './new-pump.component.html',
-  styleUrls: ['./new-pump.component.css']
+  styleUrls: ['./new-pump.component.css'],
 })
 export class NewPumpComponent {
-  pumpForm: Partial<Pump> = {
+  pumpForm = signal<Partial<Pump>>({
     date: new Date(),
     time: '',
     length: null,
     ounces: null,
-    notes: ''
-  };
+    notes: '',
+  });
+
+  get isValid() {
+    const form = this.pumpForm();
+    return !!form.date && !!form.time && !!form.length && !!form.ounces;
+  }
 
   constructor(public dialogRef: MatDialogRef<NewPumpComponent>) {}
 
   save() {
-    this.dialogRef.close(this.pumpForm);
+    this.dialogRef.close(this.pumpForm());
   }
 
   cancel() {
