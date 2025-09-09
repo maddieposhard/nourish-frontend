@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NewFeedComponent } from '../new-feed/new-feed.component';
+import { Component, inject } from '@angular/core';
+import { NewFeedComponent } from './new-feed/new-feed.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FeedsService } from '../../services/feeds.service';
 import { Feed } from '../../models/feed';
@@ -12,53 +12,33 @@ import { DatePipe, TitleCasePipe } from '@angular/common';
   styleUrl: './feeds.component.css'
 })
 export class FeedsComponent {
-  selectedDate: Date = new Date();
-  feeds: Feed[] = [];
+  private feedsService = inject(FeedsService);
+  private dialog = inject(MatDialog);
 
-  constructor(private feedsService: FeedsService, private dialog: MatDialog) {}
+  feeds = this.feedsService.feeds;
+  selectedDate = this.feedsService.selectedDate;
 
   ngOnInit() {
-    this.loadFeeds();
-  }
-
-  loadFeeds() {
-    const dateStr = this.selectedDate.toISOString().split('T')[0];
-    this.feedsService.getFeedsByDate(dateStr).subscribe({
-      next: (feeds) => (this.feeds = feeds),
-      error: (err) => console.error(err),
-    });
+    this.feedsService.getFeedsByDate(this.selectedDate());
   }
 
   onDateSelected(date: Date) {
-    this.selectedDate = date;
-    this.loadFeeds();
+    if (!date) return;
+    this.feedsService.getFeedsByDate(date);
   }
 
   openAddFeedDialog() {
-    const dialogRef = this.dialog.open(NewFeedComponent, {
-      data: { date: this.selectedDate }, // pass default date
-    });
+    const dialogRef = this.dialog.open(NewFeedComponent);
 
-    dialogRef.afterClosed().subscribe((result: Feed) => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const feedData: Feed = {
+        const feedData = {
           ...result,
-          date: new Date(result.date).toISOString().split('T')[0],
+          date: new Date(result.date).toISOString().split('T')[0], // format for backend
         };
 
-        // Optimistically update the list
-        this.feeds.push(feedData);
-
-        this.feedsService.createFeed(feedData).subscribe({
-          next: (savedFeed) => {
-            const index = this.feeds.findIndex((f) => f === feedData);
-            if (index > -1) this.feeds[index] = savedFeed;
-          },
-          error: () => {
-            // remove the optimistic feed if API fails
-            this.feeds = this.feeds.filter((f) => f !== feedData);
-          },
-        });
+        // Call the service to save the new pump
+        this.feedsService.createFeed(feedData);
       }
     });
   }

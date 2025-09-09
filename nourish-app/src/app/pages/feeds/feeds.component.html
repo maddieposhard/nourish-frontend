@@ -4,11 +4,11 @@
   Add Feed
 </button>
 
-<h3>Feeds on {{ selectedDate | date:'fullDate' }}</h3>
+<h3>Feeds on {{ selectedDate() | date:'fullDate' }}</h3>
 
 @if (feeds.length > 0) {
   <ul class="feed-list">
-    @for (feed of feeds; track feed.id) {
+    @for (feed of feeds(); track feed.id) {
       <li class="feed-item">
         <div class="feed-type">{{ feed.type | titlecase }} Feed</div>
         <div class="feed-info">

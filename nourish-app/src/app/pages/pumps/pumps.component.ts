@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { PumpsService } from '../../services/pumps.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,13 +12,17 @@ import { CommonModule, DatePipe } from '@angular/common';
   styleUrl: './pumps.component.css',
   providers: [DatePipe],
 })
-export class PumpsComponent {
+export class PumpsComponent implements OnInit {
   private pumpsService = inject(PumpsService);
   private dialog = inject(MatDialog);
   private datePipe = inject(DatePipe);
 
   pumps = this.pumpsService.pumps;
   selectedDate = this.pumpsService.selectedDate;
+
+  ngOnInit() {
+    this.pumpsService.getPumpsByDate(this.selectedDate());
+  }
 
   onDateSelected(date: Date) {
     if (!date) return;

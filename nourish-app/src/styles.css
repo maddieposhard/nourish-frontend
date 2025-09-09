@@ -37,3 +37,49 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-color: #2e7d32 !important;
   }
   
+
+/* Make the entire dialog container match pastel green */
+.mat-dialog-container {
+    background-color: #e6f4ea !important;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  /* Style all mat-form-fields inside any dialog */
+  .mat-dialog-container .mat-form-field {
+    background-color: #e6f4ea !important;  /* pastel green */
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  /* Make the input text match the theme */
+  .mat-dialog-container .mat-input-element {
+    background-color: #e6f4ea !important;
+    color: #2e7d32;
+  }
+  
+  /* Style the textarea inside dialog */
+  .mat-dialog-container textarea.mat-input-element {
+    background-color: #e6f4ea !important;
+    color: #2e7d32;
+  }
+  
+  /* Buttons inside dialog */
+  .mat-dialog-container button[mat-raised-button] {
+    border-radius: 12px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    background-color: #81c784 !important;
+    color: white !important;
+    transition: background 0.2s ease;
+  }
+  
+  .mat-dialog-container button[mat-raised-button]:hover {
+    background-color: #66bb6a !important;
+  }
+  
+  .mat-dialog-container button[mat-button] {
+    color: #2e7d32 !important;
+  }
+  
