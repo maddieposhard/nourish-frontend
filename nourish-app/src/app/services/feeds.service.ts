@@ -17,11 +17,13 @@ export class FeedsService {
 
   getFeedsByDate(date: Date) {
     this.selectedDate.set(date);
-    this.http.get<Feed[]>(`${this.baseUrl}?date=${date.toISOString().split('T')[0]}`).subscribe({
-      next: (data) => this.feeds.set(data),
+    const isoDate = date.toISOString().split('T')[0];
+    this.http.get<Feed[]>(`${this.baseUrl}/by_date?date=${isoDate}`).subscribe({
+      next: (data) => {this.feeds.set(data); console.log(data)},
       error: (err) => console.error('Error loading feeds by date:', err)
     });
   }
+  
 
   createFeed(feed: Feed) {
     return this.http.post<Feed>(this.baseUrl, feed).subscribe({
@@ -34,7 +36,7 @@ export class FeedsService {
 
 
   updateFeed(feed: Feed): Observable<Feed> {
-    return this.http.put<Feed>(`${this.baseUrl}/${feed.id}`, { feed }).pipe(
+    return this.http.put<Feed>(`${this.baseUrl}/${feed.id}`,  feed ).pipe(
       tap((updated) => {
         this.feeds.update(curr =>
           curr.map(f => f.id === updated.id ? updated : f)

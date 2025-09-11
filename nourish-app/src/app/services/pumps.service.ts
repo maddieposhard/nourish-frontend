@@ -28,14 +28,14 @@ export class PumpsService {
     });
   }
 
-    createPump(pump: Pump) {
-      return this.http.post<Pump>(this.apiUrl, pump).subscribe({
-        next: (createdPump) => {
-          this.pumps.update((current) => [...current, createdPump]);
-        },
-        error: (err) => console.error('Error creating pump:', err)
-      });
-    }
+  createPump(pump: Pump) {
+    return this.http.post<Pump>(this.apiUrl, pump).subscribe({
+      next: (createdPump) => {
+        this.pumps.update((current) => [...current, createdPump]);
+      },
+      error: (err) => console.error('Error creating pump:', err)
+    });
+  }
 
   deletePump(pumpId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${pumpId}`);

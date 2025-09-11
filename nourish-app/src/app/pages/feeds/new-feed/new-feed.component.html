@@ -1,0 +1,92 @@
+<h2 mat-dialog-title>Add Feed</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="feedForm().date"
+      name="date"
+      required
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Time</mat-label>
+    <input
+      matInput
+      type="time"
+      [(ngModel)]="feedForm().time"
+      name="time"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Baby</mat-label>
+    <mat-select
+      [value]="feedForm().baby_id"
+      (selectionChange)="selectBaby($event.value)"
+      required
+    >
+      @for (baby of babies(); track baby.id) {
+        <mat-option [value]="baby.id">
+          {{ baby.name }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select [(ngModel)]="feedForm().feed_type" name="type" required>
+      <mat-option value="bottle">Bottle</mat-option>
+      <mat-option value="breast">Breast</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  @if (feedForm().feed_type === 'bottle') {
+    <mat-form-field appearance="fill">
+      <mat-label>Ounces</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="feedForm().ounces"
+        name="ounces"
+        required
+      />
+    </mat-form-field>
+  }
+
+  @if (feedForm().feed_type === 'breast') {
+    <mat-form-field appearance="fill">
+      <mat-label>Length (minutes)</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="feedForm().length"
+        name="length"
+        required
+      />
+    </mat-form-field>
+  }
+
+  <mat-form-field appearance="fill">
+    <mat-label>Notes</mat-label>
+    <textarea matInput [(ngModel)]="feedForm().notes" name="notes"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="save()"
+    [disabled]="!feedForm().date || !feedForm().time || !feedForm().feed_type"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

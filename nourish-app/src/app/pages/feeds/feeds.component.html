@@ -1,16 +1,20 @@
-<!-- <app-calendar (dateChange)="onDateSelected($event)"></app-calendar> -->
-
+<div class="feeds-container">
+<div class="calendar-wrapper">
+<app-calendar (dateChange)="onDateSelected($event)"></app-calendar>
 <button mat-raised-button color="primary" (click)="openAddFeedDialog()">
   Add Feed
 </button>
+</div>
 
+
+<div class="feeds-list-wrapper">
 <h3>Feeds on {{ selectedDate() | date:'fullDate' }}</h3>
 
 @if (feeds.length > 0) {
   <ul class="feed-list">
     @for (feed of feeds(); track feed.id) {
       <li class="feed-item">
-        <div class="feed-type">{{ feed.type | titlecase }} Feed</div>
+        <div class="feed-type">{{ feed.feed_type | titlecase }} Feed</div>
         <div class="feed-info">
           {{ feed.time }} - 
           @if (feed.length) {
@@ -28,3 +32,5 @@
 } @else {
   <p>No feeds recorded for this day.</p>
 }
+</div>
+</div>

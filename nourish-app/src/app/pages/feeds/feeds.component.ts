@@ -2,14 +2,14 @@ import { Component, inject } from '@angular/core';
 import { NewFeedComponent } from './new-feed/new-feed.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FeedsService } from '../../services/feeds.service';
-import { Feed } from '../../models/feed';
 import { DatePipe, TitleCasePipe } from '@angular/common';
+import { CalendarComponent } from '../../features/calendar/calendar.component';
 
 @Component({
   selector: 'app-feeds',
-  imports: [DatePipe, TitleCasePipe],
+  imports: [DatePipe, TitleCasePipe, CalendarComponent],
   templateUrl: './feeds.component.html',
-  styleUrl: './feeds.component.css'
+  styleUrl: './feeds.component.css',
 })
 export class FeedsComponent {
   private feedsService = inject(FeedsService);

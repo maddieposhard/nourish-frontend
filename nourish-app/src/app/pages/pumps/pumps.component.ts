@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PumpsService } from '../../services/pumps.service';
-import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarComponent } from '../../features/calendar/calendar.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPumpComponent } from './new-pump/new-pump.component';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -70,9 +70,9 @@ export class PumpsComponent implements OnInit {
     this.pumpsService.deletePump(pumpId).subscribe({
       next: () => {
         // Remove the deleted pump from the signal
-        this.pumps.update(current => current.filter(p => p.id !== pumpId));
+        this.pumps.update((current) => current.filter((p) => p.id !== pumpId));
       },
-      error: err => console.error('Error deleting pump:', err)
+      error: (err) => console.error('Error deleting pump:', err),
     });
   }
 }

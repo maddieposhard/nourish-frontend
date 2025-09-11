@@ -1,7 +1,7 @@
 <div class="pumps-container">
     <!-- Left column: calendar -->
     <div class="calendar-wrapper">
-      <app-calendar></app-calendar>
+      <app-calendar (dateChange)="onDateSelected($event)"></app-calendar>
       <button class="add-pump-btn" mat-raised-button color="primary" (click)="openAddPumpDialog()">
         Add Pump
       </button>

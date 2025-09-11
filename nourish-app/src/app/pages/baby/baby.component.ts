@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Baby } from '../../models/baby';
 import { BabyService } from '../../services/baby.service';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
   providers: [DatePipe]
 })
 export class BabyComponent implements OnInit {
-  babies: Baby[] = [];
+  private babyService = inject(BabyService);
+  babies = this.babyService.babies;
   newBaby: Partial<Baby> = { 
     name: '',            // initialize with empty string
     birthDate: null,  // initialize with today's date or null
@@ -26,35 +27,12 @@ export class BabyComponent implements OnInit {
   };
   showModal: boolean = false;
 
-	constructor(private babyService: BabyService) {}
-
 	ngOnInit(): void {
-    this.loadBabies();
+    this.babyService.getMyBabies();
 	}
 
-  loadBabies() {
-    this.babyService.getMyBabies().subscribe({
-      next: babies => this.babies = babies,
-      error: err => console.error(err),
-    });
-  }
-
   addBaby() {
-    this.babyService.createBaby(this.newBaby as Baby).subscribe({
-      next: baby => {
-        this.babies.push(baby);
-        this.showModal = false;
-  
-        // Reset newBaby after successful creation
-        this.newBaby = { 
-          name: '', 
-          birthDate: null,   // reset to null so datepicker is empty
-          gender: ''         // reset to empty string
-        };
-      },
-      error: err => console.error('Failed to add baby', err)
-    });
-  }
+    this.babyService.createBaby}
 
   toggleModal() {
     this.showModal = !this.showModal;
