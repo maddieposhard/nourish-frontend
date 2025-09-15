@@ -10,10 +10,12 @@ import { CalendarComponent } from '../../features/calendar/calendar.component';
   imports: [DatePipe, TitleCasePipe, CalendarComponent],
   templateUrl: './feeds.component.html',
   styleUrl: './feeds.component.css',
+  providers: [DatePipe],
 })
 export class FeedsComponent {
   private feedsService = inject(FeedsService);
   private dialog = inject(MatDialog);
+  private datePipe = inject(DatePipe);
 
   feeds = this.feedsService.feeds;
   selectedDate = this.feedsService.selectedDate;
@@ -40,6 +42,37 @@ export class FeedsComponent {
         // Call the service to save the new pump
         this.feedsService.createFeed(feedData);
       }
+    });
+  }
+
+  formatTime(time: string | number | null): string {
+    let date: Date;
+
+    if (typeof time === 'number') {
+      date = new Date(time);
+    } else {
+      date = new Date(time!);
+
+      // Adjust so the time is treated as local instead of UTC
+      date = new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+        date.getUTCHours(),
+        date.getUTCMinutes()
+      );
+    }
+
+    return this.datePipe.transform(date, 'h:mm a') || '';
+  }
+
+  deleteFeed(feedId: number) {
+    this.feedsService.deleteFeed(feedId).subscribe({
+      next: () => {
+        // Remove the deleted feed from the signal
+        this.feeds.update((current) => current.filter((f) => f.id !== feedId));
+      },
+      error: (err) => console.error('Error deleting feed:', err),
     });
   }
 }

@@ -46,6 +46,6 @@ export class FeedsService {
   }
 
   deleteFeed(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/feeds/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }
