@@ -1,0 +1,29 @@
+/* Container for the profile page */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f3fdf7; /* same as feeds-container / babies-container */
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Card around profile info */
+  .profile-card {
+    background-color: #e6f4ea; /* same as baby-card / feed-item */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    color: #2e7d32; /* match text color */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Headings */
+  .profile-container h2 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+  }
+  

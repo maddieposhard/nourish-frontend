@@ -1,16 +1,19 @@
 <div class="baby-container">
+    <div class="baby-list-wrapper">
     @for (baby of babies(); track baby.id) {
-      <div class="user-preview-container">
-        <div class="user-preview-content">
-          <p>{{ baby.name }}</p>
-          <p>{{ baby.gender }}</p>
+      <div class="baby-card">
+        <div class="baby-info">
+          <p class="baby-name">{{ baby.name }}</p>
+          <p class="baby-birthdate">Born: {{ baby.birthdate | date:'mediumDate' }}</p>
         </div>
+        <button class="delete-baby-btn" (click)="confirmDelete(baby.id)">Delete</button>
       </div>
     }
-  </div>
-  
-  <button mat-raised-button color="primary" (click)="toggleModal()">Add Baby</button>
-  
+    
+    <button mat-raised-button color="primary" (click)="toggleModal()" class="add-baby-btn">Add Baby</button>
+</div>
+</div>
+    
   @if (showModal) {
     <div>
       <div class="modal-backdrop" (click)="toggleModal()"></div>
@@ -28,7 +31,7 @@
           <!-- Birthdate -->
           <mat-form-field appearance="fill">
             <mat-label>Birthday</mat-label>
-            <input matInput [matDatepicker]="picker" name="birthDate" [(ngModel)]="newBaby.birthDate" required />
+            <input matInput [matDatepicker]="picker" name="birthdate" [(ngModel)]="newBaby.birthdate" required />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -37,14 +40,14 @@
           <mat-form-field appearance="fill">
             <mat-label>Gender</mat-label>
             <mat-select name="gender" [(ngModel)]="newBaby.gender" required>
-              <mat-option value="Male">Male</mat-option>
-              <mat-option value="Female">Female</mat-option>
+              <mat-option value="male">Male</mat-option>
+              <mat-option value="female">Female</mat-option>
             </mat-select>
           </mat-form-field>
   
           <div class="actions">
-            <button mat-raised-button color="primary" type="submit" [disabled]="babyForm.invalid">Add</button>
-            <button mat-button type="button" (click)="toggleModal()">Cancel</button>
+              <button mat-button type="button" (click)="toggleModal()">Cancel</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="babyForm.invalid">Add</button>
           </div>
   
         </form>

@@ -22,7 +22,7 @@ export class BabyComponent implements OnInit {
   babies = this.babyService.babies;
   newBaby: Partial<Baby> = { 
     name: '',            // initialize with empty string
-    birthDate: null,  // initialize with today's date or null
+    birthdate: null,  // initialize with today's date or null
     gender: ''              // initialize with empty string
   };
   showModal: boolean = false;
@@ -32,9 +32,25 @@ export class BabyComponent implements OnInit {
 	}
 
   addBaby() {
-    this.babyService.createBaby}
+    this.babyService.createBaby(this.newBaby);
+    this.toggleModal();
+    this.newBaby = { name: '', birthdate: '', gender: '' }; // reset form
+  }
 
   toggleModal() {
     this.showModal = !this.showModal;
+  }
+
+  confirmDelete(babyId: number) {
+    if (confirm("Are you sure you want to delete this baby? This action cannot be undone.")) {
+      this.babyService.deleteBaby(babyId).subscribe({
+        next: () => {
+          // Remove the baby from the list to update the UI
+          this.babies.set (this.babies().filter(b => b.id !== babyId)
+          );
+        },
+        error: (err) => console.error("Error deleting baby:", err)
+      });
+    }
   }
 }

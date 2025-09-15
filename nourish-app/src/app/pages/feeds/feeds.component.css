@@ -60,6 +60,10 @@
     gap: 15px;
 }
 
+.feeds-list-wrapper p {
+    color: #2e7d32;
+}
+
 h3 {
     color: #2e7d32; 
     margin-bottom: 10px;

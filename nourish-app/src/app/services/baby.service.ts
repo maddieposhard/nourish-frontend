@@ -12,10 +12,6 @@ export class BabyService {
 
 	constructor(private http: HttpClient) {}
 
-	getBabies(): Observable<Baby[]> {
-		return this.http.get<Baby[]>(`${environment.apiUrl}/babies`);
-	}
-
   getMyBabies() {
     const token = localStorage.getItem('token');
     this.http
@@ -28,15 +24,19 @@ export class BabyService {
       });
   }
 
-  createBaby(baby: Baby) {
+  createBaby(baby: Partial<Baby>) {
     const token = localStorage.getItem('token');
     this.http
-      .post<Baby>(`${environment.apiUrl}/babies`, baby, {
+      .post<Baby>(`${environment.apiUrl}/babies`, { baby }, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .subscribe({
         next: (newBaby) => this.babies.update((current) => [...current, newBaby]),
         error: (err) => console.error('Failed to create baby', err),
       });
+  }
+
+  deleteBaby(babyId: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/babies/${babyId}`);
   }
 }

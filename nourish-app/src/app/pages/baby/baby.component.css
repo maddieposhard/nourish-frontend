@@ -1,97 +1,126 @@
-/* Container for all babies */
-.baby-container {
+.babies-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f3fdf7; /* same as feeds-container */
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
   
   /* Individual baby card */
-  .user-preview-container {
-    background-color: #dff6e4; /* pastel green */
+  .baby-card {
+    display: flex;
+    justify-content: space-between; /* info on left, actions on right */
+    align-items: center;
+    background-color: #e6f4ea; /* same as feed-item */
     border-radius: 12px;
-    padding: 16px;
-    width: 180px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
+    padding: 15px;
+    padding-bottom: 50px; /* for space for delete button */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    position: relative;
   }
   
-  .user-preview-container:hover {
+  /* Baby info text */
+  .baby-info p {
+    margin: 0;
+    color: #2e7d32; /* match feed text color */
+  }
+  
+  /* Add baby button matches add-feed-btn */
+  .add-baby-btn {
+    background-color: #e6f4ea;        
+    color: #2e7d32;                   
+    font-weight: bold;
+    border-radius: 12px;
+    border-color: #2e7d32;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .add-baby-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
   
-  /* Content inside the baby card */
-  .user-preview-content p {
-    margin: 4px 0;
-    font-weight: 500;
-    color: #333;
-    text-align: center;
+  .add-baby-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
   
-  /* Add Baby button styling */
-  button[mat-raised-button] {
-    margin-top: 16px;
-    background-color: #a8e6cf; /* slightly darker pastel green */
-    color: #333;
-    font-weight: 600;
-    transition: background-color 0.2s;
+  /* Delete baby button matches delete-feed-btn */
+  .delete-baby-btn {
+    position: absolute;
+    bottom: 10px;       
+    right: 10px;       
+    background-color: #e6f4ea;        
+    color: #2e7d32;                   
+    font-weight: bold;
+    border-radius: 8px;  
+    border-color: #2e7d32;
+    padding: 6px 12px;  
+    font-size: 0.8rem;   
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
-  button[mat-raised-button]:hover {
-    background-color: #91d5b3;
+  .delete-baby-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
   
-  /* Modal backdrop */
-  .modal-backdrop {
-    position: fixed;
+  .delete-baby-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  
+  /* Backdrop behind the modal */
+.modal-backdrop {
+    position: fixed;       /* stays fixed while scrolling */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 50;
+    background-color: rgba(0,0,0,0.4); /* semi-transparent black */
+    z-index: 999;          /* behind modal but above page content */
   }
   
-  /* Modal window */
+  /* Modal itself */
   .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f4fff7; /* soft pastel background */
-    padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    width: 320px;
-    z-index: 100;
+    position: fixed;       /* float above the page */
+    top: 50%;              /* center vertically */
+    left: 50%;             /* center horizontally */
+    transform: translate(-50%, -50%); /* perfect centering */
+    z-index: 1000;         /* above backdrop */
+    background-color: #ffffff; /* white modal background */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 15px;
   }
   
-  /* Form fields inside modal */
-  .mat-form-field {
-    width: 100%;
-  }
-  
-  /* Modal action buttons */
-  .actions {
+  /* Action buttons */
+  .modal .actions {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
+    gap: 10px;
   }
   
-  .actions button[mat-button] {
-    color: #333;
-  }
+
+  /* Responsive adjustments */
+  @media (max-width: 800px) {
+    .babies-container {
+      flex-direction: column;
+    }
   
-  .actions button[mat-raised-button] {
-    background-color: #a8e6cf;
-  }
-  
-  .actions button[mat-raised-button]:hover {
-    background-color: #91d5b3;
+    .baby-card {
+      width: 100%;
+    }
   }
   
