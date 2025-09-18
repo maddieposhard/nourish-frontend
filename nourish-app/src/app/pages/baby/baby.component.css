@@ -1,34 +1,32 @@
-.babies-container {
+.baby-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    background-color: #f3fdf7; /* same as feeds-container */
+    background-color: #f3fdf7; 
     min-height: 100vh;
     font-family: 'Segoe UI', sans-serif;
 }
   
-  /* Individual baby card */
-  .baby-card {
+
+.baby-card {
     display: flex;
-    justify-content: space-between; /* info on left, actions on right */
+    justify-content: space-between; 
     align-items: center;
-    background-color: #e6f4ea; /* same as feed-item */
+    background-color: #e6f4ea; 
     border-radius: 12px;
     padding: 15px;
-    padding-bottom: 50px; /* for space for delete button */
+    padding-bottom: 50px; 
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     position: relative;
-  }
-  
-  /* Baby info text */
-  .baby-info p {
+}
+
+.baby-info p {
     margin: 0;
-    color: #2e7d32; /* match feed text color */
-  }
+    color: #2e7d32; 
+}
   
-  /* Add baby button matches add-feed-btn */
-  .add-baby-btn {
+.add-baby-btn {
     background-color: #e6f4ea;        
     color: #2e7d32;                   
     font-weight: bold;
@@ -38,20 +36,14 @@
     margin-bottom: 15px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+}
   
-  .add-baby-btn:hover {
+.add-baby-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
+}
   
-  .add-baby-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-  
-  /* Delete baby button matches delete-feed-btn */
-  .delete-baby-btn {
+.delete-baby-btn {
     position: absolute;
     bottom: 10px;       
     right: 10px;       
@@ -64,37 +56,30 @@
     font-size: 0.8rem;   
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+}
   
-  .delete-baby-btn:hover {
+.delete-baby-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
+}
   
-  .delete-baby-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-  
-  /* Backdrop behind the modal */
 .modal-backdrop {
-    position: fixed;       /* stays fixed while scrolling */
+    position: fixed;      
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.4); /* semi-transparent black */
-    z-index: 999;          /* behind modal but above page content */
-  }
+    background-color: rgba(0,0,0,0.4);
+    z-index: 999;      
+}
   
-  /* Modal itself */
-  .modal {
-    position: fixed;       /* float above the page */
-    top: 50%;              /* center vertically */
-    left: 50%;             /* center horizontally */
-    transform: translate(-50%, -50%); /* perfect centering */
-    z-index: 1000;         /* above backdrop */
-    background-color: #ffffff; /* white modal background */
+.modal {
+    position: fixed;     
+    top: 50%;              
+    left: 50%;            
+    transform: translate(-50%, -50%); 
+    z-index: 1000;     
+    background-color: #ffffff;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -103,24 +88,21 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-  }
+}
   
-  /* Action buttons */
-  .modal .actions {
+.modal .actions {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-  }
+}
   
+@media (max-width: 800px) {
+.babies-container {
+    flex-direction: column;
+}
 
-  /* Responsive adjustments */
-  @media (max-width: 800px) {
-    .babies-container {
-      flex-direction: column;
-    }
-  
-    .baby-card {
-      width: 100%;
-    }
-  }
+.baby-card {
+    width: 100%;
+}
+}
   

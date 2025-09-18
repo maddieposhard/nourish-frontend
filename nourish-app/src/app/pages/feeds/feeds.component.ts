@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { NewFeedComponent } from './new-feed/new-feed.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FeedsService } from '../../services/feeds.service';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { CalendarComponent } from '../../features/calendar/calendar.component';
+import { BabyService } from '../../services/baby.service';
 
 @Component({
   selector: 'app-feeds',
@@ -12,16 +13,19 @@ import { CalendarComponent } from '../../features/calendar/calendar.component';
   styleUrl: './feeds.component.css',
   providers: [DatePipe],
 })
-export class FeedsComponent {
+export class FeedsComponent implements OnInit {
   private feedsService = inject(FeedsService);
+  private babyService = inject(BabyService)
   private dialog = inject(MatDialog);
   private datePipe = inject(DatePipe);
 
   feeds = this.feedsService.feeds;
+  babies = this.babyService.babies; 
   selectedDate = this.feedsService.selectedDate;
 
   ngOnInit() {
     this.feedsService.getFeedsByDate(this.selectedDate());
+    this.babyService.getMyBabies();
   }
 
   onDateSelected(date: Date) {
@@ -75,4 +79,10 @@ export class FeedsComponent {
       error: (err) => console.error('Error deleting feed:', err),
     });
   }
+
+  getBabyName(babyId: number) {
+    const baby = this.babies()?.find(b => b.id === babyId);
+    return baby ? baby.name : 'Unknown';
+  }
+  
 }

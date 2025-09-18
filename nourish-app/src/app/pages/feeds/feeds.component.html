@@ -17,7 +17,7 @@
         <div class="feed-type">{{ feed.feed_type | titlecase }} Feed</div>
 
         <div class="feed-info">
-          <!-- <span class="baby">{{ feed.baby_id }}</span> -->
+          <span class="baby">Baby: {{ getBabyName(feed.baby_id) }}</span>
           <span class="feed-time">{{ formatTime(feed.time) }} </span>
           @if (feed.length) {
             {{ feed.length }} min
