@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(public authService: AuthenticationService) {}
-
+  private router= inject(Router);
+  public authService = inject(AuthenticationService);
 
   menuOpen = false;
 
@@ -25,4 +25,8 @@ export class NavbarComponent {
   logout() {
 		this.authService.logout();
 	}
+
+  isSignupPage(): boolean {
+    return this.router.url === '/signup';
+  }
 }

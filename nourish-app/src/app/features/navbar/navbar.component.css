@@ -37,6 +37,19 @@
     background-color: #66bb6a;
 }
 
+.auth-btn {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.auth-btn:hover {
+    background-color: #66bb6a;
+}
+
 .logout-btn {
     margin-left: auto; 
     background: none;

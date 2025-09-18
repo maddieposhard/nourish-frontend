@@ -18,6 +18,10 @@
         <button class="logout-btn" (click)="logout()">Logout</button>
       </div>
     }@else {
-      <a routerLink="/signup">Sign Up</a>
+      @if (isSignupPage()) {
+        <a routerLink="/login" class="auth-btn">Login</a>
+      }@else {
+        <a routerLink="/signup" class="auth-btn">Sign Up</a>
+      }    
     }
   </nav>
