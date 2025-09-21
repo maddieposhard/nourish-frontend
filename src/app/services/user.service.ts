@@ -15,11 +15,11 @@ export class UserService {
 	}
 
   getCurrentUser() {
-		return this.http.get<User>('http://localhost:3000/profile');
+		return this.http.get<User>(`${environment.apiUrl}/profile`);
 	}
 	
 	updateCurrentUser(data: Partial<User>) {
-		return this.http.put<User>('http://localhost:3000/profile', data);
+		return this.http.put<User>(`${environment.apiUrl}/profile`, data);
 	}
 
 }
