@@ -19,7 +19,7 @@ export class FeedsService {
     this.selectedDate.set(date);
     const isoDate = date.toISOString().split('T')[0];
     this.http.get<Feed[]>(`${this.baseUrl}/by_date?date=${isoDate}`).subscribe({
-      next: (data) => {this.feeds.set(data); console.log(data)},
+      next: (data) => {this.feeds.set(data); },
       error: (err) => console.error('Error loading feeds by date:', err)
     });
   }

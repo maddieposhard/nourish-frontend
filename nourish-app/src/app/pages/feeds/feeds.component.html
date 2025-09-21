@@ -1,6 +1,6 @@
 <div class="feeds-container">
 <div class="calendar-wrapper">
-<app-calendar (dateChange)="onDateSelected($event)"></app-calendar>
+<app-calendar (dateChange)="onDateSelected($event)" [selectedDate]="selectedDate()"></app-calendar>
 <button mat-raised-button color="primary" (click)="openAddFeedDialog()" class="add-feed-btn">
   Add Feed
 </button>

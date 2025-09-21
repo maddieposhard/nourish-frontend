@@ -33,7 +33,7 @@ export class NewFeedComponent implements OnInit {
   babies = this.babyService.babies;
 
   feedForm = signal<Partial<Feed>>({
-    date: new Date().toISOString().split('T')[0], // default to today
+    date: new Date(), // default to today
     time: '',
     feed_type: 'bottle', // default type
     ounces: undefined,

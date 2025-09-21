@@ -38,7 +38,7 @@ export class PumpsComponent implements OnInit {
           ...result,
           date: new Date(result.date).toISOString().split('T')[0], // format for backend
         };
-
+        console.log('New pump data to save:', pumpData);
         // Call the service to save the new pump
         this.pumpsService.createPump(pumpData);
       }

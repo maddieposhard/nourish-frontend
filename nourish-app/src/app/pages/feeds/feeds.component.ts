@@ -30,8 +30,8 @@ export class FeedsComponent implements OnInit {
 
   onDateSelected(date: Date) {
     if (!date) return;
-    this.feedsService.getFeedsByDate(date);
-  }
+     this.feedsService.getFeedsByDate(date);
+   }
 
   openAddFeedDialog() {
     const dialogRef = this.dialog.open(NewFeedComponent);
